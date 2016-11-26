@@ -1,9 +1,10 @@
 'user restrict';
 const Sequelize = require('sequelize');
 var sequelize = new Sequelize('postgres://postgres:postgres@localhost:5432/my_app',{
-  logging: false
+  logging: false //Change to 'true' to see sequelize queries
 });
 
+//Verify if sequelize is connected correctly
 sequelize
   .authenticate()
   .then(function(err) {
@@ -13,6 +14,7 @@ sequelize
     console.log('Unable to connect to the database:', err);
   });
 
+//Define our Thing model
 var Thing = sequelize.define('thing', {
   value: {
     type: Sequelize.DECIMAL
@@ -22,12 +24,18 @@ var Thing = sequelize.define('thing', {
   }
 });
 
-// force: true will drop the table if it already exists
-Thing.sync({force: true})
+//-------------------------------------------------------
+
+//Do the things!
+Thing.sync({force: true}) //will drop the table if it already exists
   .then(populateDatabase)
   .then(() => Thing.findAll())
   .then(showThings);
 
+
+//-------------------------------------------------------
+
+//Populate our table with sample data
 function populateDatabase(done){
   return Thing.bulkCreate([
     {value: 2.50, json_value:{a:"some",b:"thing"}},
@@ -36,6 +44,7 @@ function populateDatabase(done){
   ])
 }
 
+//Output the information from json
 function showThings(things){
   things.forEach(thing => console.log(thing.get("json_value").a + thing.get("json_value").b));
 }
