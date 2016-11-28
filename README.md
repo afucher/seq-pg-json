@@ -5,6 +5,8 @@ Learning JSON column in Postgres with Sequelize
  - Clone this repo
  - `npm install`
  - `node index.js`
+ - or
+ - `URL=postgres://postgres:postgres@localhost:5432/my_app LOG=true node index.js`
 
 
 ## Database connection
