@@ -1,6 +1,8 @@
 'user restrict';
+
 const Sequelize = require('sequelize');
-var sequelize = new Sequelize('postgres://postgres:postgres@localhost:5432/my_app',{
+
+let sequelize = new Sequelize('postgres://postgres:postgres@localhost:5432/my_app',{
   logging: false //Change to 'true' to see sequelize queries
 });
 
@@ -15,7 +17,7 @@ sequelize
   });
 
 //Define our Thing model
-var Thing = sequelize.define('thing', {
+let Thing = sequelize.define('thing', {
   value: {
     type: Sequelize.DECIMAL
   },
@@ -31,7 +33,6 @@ Thing.sync({force: true}) //will drop the table if it already exists
   .then(populateDatabase)
   .then(() => Thing.findAll())
   .then(showThings);
-
 
 //-------------------------------------------------------
 
