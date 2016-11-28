@@ -2,8 +2,11 @@
 
 const Sequelize = require('sequelize');
 
-let sequelize = new Sequelize('postgres://postgres:postgres@localhost:5432/my_app',{
-  logging: false //Change to 'true' to see sequelize queries
+let postgreSqlUrl = process.env.URL || 'postgres://postgres:postgres@localhost:5432/my_app',
+    logging = process.env.LOG || false; 
+
+let sequelize = new Sequelize(postgreSqlUrl,{
+  logging //Change to 'true' to see sequelize queries
 });
 
 //Verify if sequelize is connected correctly
