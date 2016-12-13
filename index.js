@@ -1,4 +1,4 @@
-'user restrict';
+'user strict';
 
 const Sequelize = require('sequelize');
 
