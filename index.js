@@ -50,5 +50,5 @@ function populateDatabase(done){
 
 //Output the information from json
 function showThings(things){
-  things.forEach(thing => console.log(thing.get("json_value").a + thing.get("json_value").b));
+  things.forEach(thing => console.log(thing.json_value.a + thing.json_value.b));
 }
